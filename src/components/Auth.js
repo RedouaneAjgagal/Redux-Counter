@@ -1,22 +1,17 @@
 import classes from './Auth.module.css';
+import { useSelector } from 'react-redux';
+import UserProfile from './UserProfile'
+import UserForm from './UserForm';
 
 const Auth = () => {
+  const { isAuthenticated } = useSelector(state => state.authReducer);
+
   return (
-    <main className={classes.auth}>
+    <div className={classes.auth}>
       <section>
-        <form>
-          <div className={classes.control}>
-            <label htmlFor='email'>Email</label>
-            <input type='email' id='email' />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='password'>Password</label>
-            <input type='password' id='password' />
-          </div>
-          <button>Login</button>
-        </form>
+        {isAuthenticated ? <UserProfile /> : <UserForm />}
       </section>
-    </main>
+    </div>
   );
 };
 
